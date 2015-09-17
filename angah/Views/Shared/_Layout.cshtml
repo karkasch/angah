@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body ng-app="app">
+    @RenderBody()
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+    <script src="~/Scripts/libs/jquery-2.1.4.min.js"></script>
+    <script src="~/Scripts/libs/angular.min.js"></script>
+    <script src="~/Scripts/libs/angular-route.min.js"></script>
+
+    <script src="~/Scripts/app/app-config.js"></script>
+    <script src="~/Scripts/app/controllers/home-controller.js"></script>
+    <script src="~/Scripts/app/app.js"></script>
+</body>
+</html>
