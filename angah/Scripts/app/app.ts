@@ -10,4 +10,4 @@ module Angah {
 var app = angular.module("app", ['ngRoute']);
 app.config(Angah.Config);
 app.controller("homeCtrl", Angah.Controllers.HomeController);
-
+app.directive("searchPanel", Angah.Dirs.SearchPanelDirective);
