@@ -68,14 +68,17 @@ var Angah;
                         $scope.terms.push({ id: asset.id, text: asset.text });
                     };
                     console.log('D scrope', $scope);
-                    $(document).click(function () {
-                        console.log('doc clicked', $scope);
-                        $scope.expanded = false;
-                        if ($(elem).find('.txt-box').hasClass('a-active') || $(elem).find('.search-result-panel').hasClass('a-active')) {
-                        }
-                        else {
+                    $(document).click(function (e) {
+                        console.log('doc clicked', $scope, e);
+                        if ($(e.target).closest('.search-result-panel,.search-box').length == 0) {
                             $(elem).find('.search-result-panel').fadeOut(400);
                         }
+                        //$scope.expanded = false;
+                        //if ($(elem).find('.txt-box').hasClass('a-active') || 
+                        //    $(elem).find('.search-result-panel').hasClass('a-active')) {
+                        //} else {
+                        //    $(elem).find('.search-result-panel').fadeOut(400);
+                        //}
                     });
                     //$(elem).on('click', (e) => {
                     //    alert(e);
