@@ -1,0 +1,21 @@
+﻿<div class="search-panel">
+    <div class="search-box">
+        <span class="res" ng-repeat="t in terms" ng-click="removeItem(t.text)">{{t.text}}</span>
+        <input type="text" class="txt-box" ng-focus="searchTextFocus()" ng-keydown="startSearch($event)" ng-model="searchText" />
+    </div>
+    <div ng-show="expanded" class="search-result-panel">
+        <div class="search-results">
+            <div class="assets-res">
+                Assets here: <br/>
+                <ul ng-repeat="asset in searchResults.assets">
+                    <li ng-click="selectTerm(asset)">{{asset.text}}</li>
+                </ul>
+                asset res
+                <span>HJJ-00</span>
+            </div>
+            <div class="docs-res">
+                docs res
+            </div>
+        </div>
+    </div>
+</div>

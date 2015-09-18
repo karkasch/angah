@@ -9,6 +9,7 @@ var Angah;
             }
             HomeController.prototype.init = function () {
                 this.$scope.test = "dedw";
+                this.$scope.searchTerms = [{ id: 1, text: "HY-IUU" }, { id: 2, text: "FC-I2U" }];
             };
             HomeController.$inject = ['$scope'];
             return HomeController;

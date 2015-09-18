@@ -1,0 +1,31 @@
+﻿body {
+  font-family: 'Open Sans', sans-serif;
+  height: 100%;
+  font-weight: 100;
+  color: #333333;
+}
+.search-panel .search-box {
+  border: solid 1px #cfcfcf;
+  padding: 5px;
+}
+.search-panel .search-box .res {
+  display: inline-block;
+  min-width: 30px;
+  background-color: #3884bb;
+  color: white;
+  padding: 2px 4px 2px 4px;
+  border-radius: 2px;
+  margin-right: 4px;
+}
+.search-panel .search-box .txt-box {
+  display: inline-block;
+  min-width: 30px;
+  height: 20px;
+  border: none;
+  outline: none;
+}
+.search-panel .search-result-panel {
+  border: solid 1px #cfcfcf;
+  padding: 10px;
+  background-color: white;
+}

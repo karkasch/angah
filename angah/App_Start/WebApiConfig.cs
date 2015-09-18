@@ -25,8 +25,8 @@ namespace angah
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/v{version}/{controller}/{id}",
+                defaults: new { version = 1, id = RouteParameter.Optional }
             );
         }
     }

@@ -172,6 +172,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\v1\SearchController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -217,6 +218,18 @@
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Content\app.css">
+      <DependentUpon>app.less</DependentUpon>
+    </Content>
+    <Content Include="Content\app.min.css">
+      <DependentUpon>app.css</DependentUpon>
+    </Content>
+    <Content Include="Content\search.panel.css">
+      <DependentUpon>search.panel.less</DependentUpon>
+    </Content>
+    <Content Include="Content\search.panel.min.css">
+      <DependentUpon>search.panel.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -225,11 +238,15 @@
     <Content Include="Scripts\app\app-config.js.map" />
     <Content Include="Scripts\app\controllers\home-controller.js.map" />
     <Content Include="Scripts\app\directives\search-panel-directive.js.map" />
+    <Content Include="Content\search.panel.less" />
+    <Content Include="Content\app.less" />
+    <Content Include="Scripts\app\services\search-service.js.map" />
     <None Include="Scripts\libs\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\home-controller.js" />
     <Content Include="Scripts\app\directives\search-panel-directive.js" />
-    <Content Include="Scripts\app\directives\templates\search-panel.html" />
+    <Content Include="Scripts\app\services\search-service.js" />
+    <Content Include="Scripts\app\templates\search-panel.html" />
     <Content Include="Scripts\app\views\home.html" />
     <Content Include="Scripts\libs\jquery-2.1.4.js" />
     <Content Include="Scripts\libs\jquery-2.1.4.min.js" />
@@ -1070,7 +1087,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -1085,6 +1101,7 @@
     <TypeScriptCompile Include="Scripts\app\app.ts" />
     <TypeScriptCompile Include="Scripts\app\controllers\home-controller.ts" />
     <TypeScriptCompile Include="Scripts\app\directives\search-panel-directive.ts" />
+    <TypeScriptCompile Include="Scripts\app\services\search-service.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-mocks.d.ts" />

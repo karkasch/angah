@@ -11,11 +11,13 @@
 
         private init(): void {
             this.$scope.test = "dedw";
+            this.$scope.searchTerms = [{ id: 1, text: "HY-IUU" }, { id: 2, text: "FC-I2U" }];
         }
     }
 
 
     export interface IHomeScope extends ng.IScope {
         test: string;
+        searchTerms: any;
     }
 } 
