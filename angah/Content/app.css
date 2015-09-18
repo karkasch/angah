@@ -4,6 +4,9 @@
   font-weight: 100;
   color: #333333;
 }
+.search-panel {
+  position: relative;
+}
 .search-panel .search-box {
   border: solid 1px #cfcfcf;
   padding: 5px;
@@ -25,6 +28,10 @@
   outline: none;
 }
 .search-panel .search-result-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 450px;
   border: solid 1px #cfcfcf;
   padding: 10px;
   background-color: white;
