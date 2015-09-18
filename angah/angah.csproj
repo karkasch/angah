@@ -224,9 +224,12 @@
     <Content Include="Scripts\app\app.js.map" />
     <Content Include="Scripts\app\app-config.js.map" />
     <Content Include="Scripts\app\controllers\home-controller.js.map" />
+    <Content Include="Scripts\app\directives\search-panel-directive.js.map" />
     <None Include="Scripts\libs\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\home-controller.js" />
+    <Content Include="Scripts\app\directives\search-panel-directive.js" />
+    <Content Include="Scripts\app\directives\templates\search-panel.html" />
     <Content Include="Scripts\app\views\home.html" />
     <Content Include="Scripts\libs\jquery-2.1.4.js" />
     <Content Include="Scripts\libs\jquery-2.1.4.min.js" />
@@ -1081,6 +1084,7 @@
     <TypeScriptCompile Include="Scripts\app\app-config.ts" />
     <TypeScriptCompile Include="Scripts\app\app.ts" />
     <TypeScriptCompile Include="Scripts\app\controllers\home-controller.ts" />
+    <TypeScriptCompile Include="Scripts\app\directives\search-panel-directive.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-mocks.d.ts" />
