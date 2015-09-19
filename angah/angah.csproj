@@ -241,6 +241,12 @@
     <Content Include="Content\search.panel.less" />
     <Content Include="Content\app.less" />
     <Content Include="Scripts\app\services\search-service.js.map" />
+    <Content Include="Content\search.panel.css.map">
+      <DependentUpon>search.panel.css</DependentUpon>
+    </Content>
+    <Content Include="Content\app.css.map">
+      <DependentUpon>app.css</DependentUpon>
+    </Content>
     <None Include="Scripts\libs\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\home-controller.js" />

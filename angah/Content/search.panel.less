@@ -20,11 +20,26 @@
         .res {
             display: inline-block;
             min-width: 30px;
-            background-color: #3884bb;
-            color: white;
+            
             padding: 2px 4px 2px 4px;
             border-radius: 2px;
             margin-right: 4px;
+
+            .cross {
+                display: inline-block;
+                font-size: 12px;
+                margin-left: 5px;
+            }
+
+            &.asset {
+                background-color: #629ac3;
+                color: white;
+            }
+
+            &.text {
+                background-color: #E0EEF8;
+                color: #1e5b83;
+            }
         }
 
         .txt-box {
@@ -50,9 +65,42 @@
         top: 100%;
         left:0;
         min-width: 500px;
-        border: solid 1px #cfcfcf;
-        padding: 10px;
+        
         background-color: white;
-        box-shadow: 1px 2px 4px rgba(147, 147, 147, 0.49);
+        height: 0;
+        overflow: hidden;
+
+        .search-results {
+            display: none;   
+
+            .assets-res {
+                width:49%;
+                float: left;
+
+                .asset {
+                    display: inline-block;
+                    padding: 2px 5px 2px 5px;
+                    background-color: #54a1d8;
+                    color: white;
+                }
+            }
+
+            .docs-res {
+                width: 49%;
+                float:right;
+            }
+        }
+
+        &.expanded {
+            padding: 10px;
+            border: solid 1px #cfcfcf;
+            box-shadow: 1px 2px 4px rgba(147, 147, 147, 0.49);
+            min-height: 400px;
+            overflow: auto;
+
+            .search-results {
+                display: block;   
+            }
+        }
     }
 }

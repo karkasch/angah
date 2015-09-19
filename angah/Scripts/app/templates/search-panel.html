@@ -1,18 +1,26 @@
 ﻿<div class="search-panel">
     <div class="search-box">
-        <span class="res" ng-repeat="t in terms" ng-click="removeItem(t.text)">{{t.text}}</span>
+        <span class="res {{t.termType}}" ng-repeat="t in terms" ng-click="removeItem(t)">{{t.text}}<span class="cross">x</span></span>
         <input type="text" class="txt-box" ng-model="searchText"/>
         <span class="search-icon">P</span>
     </div>
     <div class="search-result-panel">
         <div class="search-results">
             <div class="assets-res">
-                Assets here: <br/>
-                <ul ng-repeat="asset in searchResults.assets">
-                    <li ng-click="selectTerm($event, asset)">{{asset.text}}</li>
-                </ul>
-                asset res
-                <span>HJJ-00</span>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>MSN</td>
+                            <td>Type</td>
+                            <td>Desc</td>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="asset in searchResults.assets">
+                        <td><span class="asset" ng-click="selectTerm($event, asset)">{{asset.text}}</span></td>
+                        <td>1</td>
+                        <td>2</td>
+                    </tr>
+                </table>
             </div>
             <div class="docs-res">
                 docs res

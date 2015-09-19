@@ -7,8 +7,22 @@
         <p>
             dewdwweddewdwqd
             dweqdwqedwqed
-
         </p>
         <input type="text" ng-model="test" />
+        <table style="width:100%;">
+            <tr>
+                <td>dewdew dewdwedw</td>
+                <td>
+                    dewdwqed
+                    <ul ng-repeat="x in searchTerms">
+                        <li>term: {{x.text}}, ID: {{x.id}}</li>
+                    </ul>
+                    <div>
+                        Add term:<br />
+                        <input type="text" ng-model="addTerm" /> <button ng-click="addTermClicked()">Add</button>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
