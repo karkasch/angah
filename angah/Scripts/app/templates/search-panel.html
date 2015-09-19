@@ -1,6 +1,6 @@
 ﻿<div class="search-panel">
     <div class="search-box">
-        <span class="res {{t.termType}}" ng-repeat="t in terms" ng-click="removeItem(t)">{{t.text}}<span class="cross">x</span></span>
+        <span class="res {{t.termType}} {{t.animate}}" ng-repeat="t in terms" ng-click="removeItem($event, t)">{{t.text}}<span class="cross">x</span></span>
         <input type="text" class="txt-box" ng-model="searchText"/>
         <span class="search-icon">P</span>
     </div>

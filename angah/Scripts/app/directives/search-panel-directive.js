@@ -7,7 +7,8 @@ var Angah;
             return {
                 restrict: 'E',
                 scope: {
-                    terms: "="
+                    terms: "=",
+                    changed: "="
                 },
                 link: function (scope, element, attrs) {
                     //console.log('searchSvc');
@@ -57,29 +58,36 @@ var Angah;
                             $scope.$apply();
                         }
                     });
-                    $scope.removeItem = function (term) {
-                        console.log('removed ss', term, $scope);
+                    $scope.removeItem = function (e, term) {
+                        console.log('removed ss', e, term, $scope);
                         for (var i = 0; i < $scope.terms.length; i++) {
                             var t = $scope.terms[i];
                             if (t.id == term.id && t.text == term.text) {
-                                $scope.terms.splice(i, 1);
-                                $scope.$apply();
+                                t.animate = "animate-plobout";
+                                window.setTimeout(function () {
+                                    $scope.terms.splice(i, 1);
+                                    $scope.$digest();
+                                }, 280);
+                                $scope.changed(e);
                                 break;
                             }
                         }
+                        //$scope.$apply();
                     };
                     $scope.selectTerm = function (e, asset) {
                         //e.preventDefault();
                         if (asset.children != null) {
                         }
-                        else
-                            $scope.terms.push({ id: asset.id, text: asset.text, termType: 'asset' });
+                        else {
+                            $scope.terms.push({ id: asset.id, text: asset.text, termType: 'asset', animate: "animate-plobin" });
+                            $scope.changed(e);
+                        }
                         $scope.searchText = "";
-                        $(elem).find('.txt-box').focus();
+                        //$(elem).find('.txt-box').focus();
                     };
                     console.log('D scrope', $scope);
                     $(document).click(function (e) {
-                        console.log('doc clicked', $scope, e);
+                        //console.log('doc clicked', $scope, e);
                         if ($(e.target).closest('.search-result-panel,.search-box').length == 0) {
                             $(elem).find('.search-result-panel').removeClass('expanded');
                         }

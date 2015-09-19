@@ -4,7 +4,8 @@
             return {
                 restrict: 'E',
                 scope: {
-                    terms: "="
+                    terms: "=",
+                    changed: "="
                 },
                 link: (scope: ISearchPanelScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes) => {
                     //console.log('searchSvc');
@@ -71,16 +72,22 @@
                         }
                     });
 
-                    $scope.removeItem = (term: any) => {
-                        console.log('removed ss', term, $scope);
+                    $scope.removeItem = (e: JQueryEventObject, term: any) => {
+                        console.log('removed ss', e, term, $scope);
                         for (var i = 0; i < $scope.terms.length; i++) {
                             var t = $scope.terms[i];
                             if (t.id == term.id && t.text == term.text) {
-                                $scope.terms.splice(i, 1);
-                                $scope.$apply();
+                                t.animate = "animate-plobout";
+                                window.setTimeout(() => {
+                                    $scope.terms.splice(i, 1);
+                                    $scope.$digest();
+                                }, 280);
+                                $scope.changed(e);
                                 break;
                             }
                         }
+
+                        //$scope.$apply();
                     }
                     
                     $scope.selectTerm = (e, asset) => {
@@ -88,17 +95,19 @@
                         if (asset.children != null) {
                             //$.each(asset.childer
                         }
-                        else
-                            $scope.terms.push({ id: asset.id, text: asset.text, termType: 'asset' });
+                        else {
+                            $scope.terms.push({ id: asset.id, text: asset.text, termType: 'asset', animate: "animate-plobin" });
+                            $scope.changed(e);
+                        }
 
                         $scope.searchText = "";
-                        $(elem).find('.txt-box').focus();
+                        //$(elem).find('.txt-box').focus();
                     }
 
                     console.log('D scrope', $scope);
 
                     $(document).click((e) => {
-                        console.log('doc clicked', $scope, e);
+                        //console.log('doc clicked', $scope, e);
 
                         if ($(e.target).closest('.search-result-panel,.search-box').length == 0) {
                             $(elem).find('.search-result-panel').removeClass('expanded');
@@ -129,6 +138,7 @@
         test: string;
         expanded: boolean;
         terms: Array<ISearchTerm>;
+        changed: Function;
         searchText: string;
         searchTextFocus: Function;
         startSearch: Function;
@@ -142,13 +152,14 @@
     }
 
     export interface IAssetSearchResult extends ISearchTerm {
-        children: Array<IAssetSearchResult>;
+        children?: Array<IAssetSearchResult>;
     }
 
     export interface ISearchTerm {
         id: string;
         text: string;
         termType: string;
+        animate?: string;
     }
 
     export enum SearchTermTypes {

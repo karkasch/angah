@@ -17,12 +17,14 @@ namespace angah.API.v1
                 {
                     new {id = 1, text = "HY-IOP"},
                     new {id = 3, text = "AY-IOP"},
-                    new {id = 4, text = "BY-IOP", children = new List<object>() {
-                        new {id = 31, text = "C1-IOP"},
-                        new {id = 32, text = "CC2-IOP"},
-                        new {id = 33, text = "C3w-IOP"},
-                        new {id = 34, text = "C4-IOP"},
-                    }},
+                    new {id = 4, text = "BY-IOP",
+                        //children = new List<object>() {
+                        //    new {id = 31, text = "C1-IOP"},
+                        //    new {id = 32, text = "CC2-IOP"},
+                        //    new {id = 33, text = "C3w-IOP"},
+                        //    new {id = 34, text = "C4-IOP"}
+                        //    }
+                        },
                     new {id = 5, text = "CY-IOP"},
                     new {id = 6, text = "CA-IOP"},
                     new {id = 7, text = "CB-AAA"},
