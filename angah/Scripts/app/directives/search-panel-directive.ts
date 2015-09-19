@@ -8,21 +8,17 @@
                     changed: "="
                 },
                 link: (scope: ISearchPanelScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes) => {
-                    //console.log('searchSvc');
                     var $scope = scope;
                     var elem = element;
 
                     $scope.statusIcon = "P";
                     $scope.searchText = "Type to search...";
-                    $scope.test = "test from D scrope";
-                    $scope.expanded = false;
-                    $scope.searchResults = null;//{};
+                    //$scope.expanded = false;
+                    $scope.searchResults = null;
 
                     
                     $(elem).find('.txt-box').focus((e) => {
-                        //$(e.currentTarget).addClass('a-active');
                         $scope.searchText = "";
-                        //$(elem).find('.txt-box').val('');
                         $scope.$apply();
                     });
 
@@ -30,24 +26,7 @@
                         $(e.currentTarget).addClass('a-active');
                     });
 
-                    //$(elem).find('.txt-box').keyup((e) => {
-
                     $(elem).find('.txt-box').keyup((e) => {
-                        console.log('search AAA', e, $scope);
-                        if (e.keyCode == 8) {
-                            //$scope.terms.splice($scope.terms.length - 1, 1);
-                            //$scope.$apply();
-                        }
-                        else if (e.keyCode == 13) {
-                            console.log('search event', e, $scope);
-
-                            //$(elem).find('.txt-box').blur();
-                            //$(e.currentTarget).blur();
-                            //$scope.searchResults = {};
-                        }
-                        else {
-                            //$(elem).find('.search-result-panel').removeClass('expanded');
-                        }
 
                         if ($scope.searchText.length >= 2) {
                             $scope.statusIcon = "S";
@@ -57,14 +36,8 @@
                                 contentType: "application/json",
                                 cache: false
                             }).done((response: ISearchResults) => {
-                                console.log('resss', response);
                                 $scope.statusIcon = "P";
-
                                 $scope.searchResults = response;
-
-                                //$scope.terms.push({ id: 0, text: $scope.searchText });
-                                //$scope.searchText = "";
-                                //$(elem).find('.txt-box').val('');
                                 $(elem).find('.search-result-panel').addClass('expanded');
                                 $scope.$apply();
                             });
@@ -89,7 +62,6 @@
                                 break;
                             }
                         }
-
                         //$scope.$apply();
                     }
                     
@@ -104,33 +76,16 @@
                         }
 
                         $scope.searchText = "";
-                        //$(elem).find('.txt-box').focus();
                     }
 
-                    console.log('D scrope', $scope);
 
+                    // hide search results when click away
                     $(document).click((e) => {
-                        //console.log('doc clicked', $scope, e);
-
                         if ($(e.target).closest('.search-result-panel,.search-box').length == 0) {
                             $(elem).find('.search-result-panel').removeClass('expanded');
                         }
-
-                        //$scope.expanded = false;
-
-                        //if ($(elem).find('.txt-box').hasClass('a-active') || 
-                        //    $(elem).find('.search-result-panel').hasClass('a-active')) {
-                            
-                        //} else {
-                        //    $(elem).find('.search-result-panel').fadeOut(400);
-                        //}
-
-                        
                     });
 
-                    //$(elem).on('click', (e) => {
-                    //    alert(e);
-                    //});
                 },
                 templateUrl: '/Scripts/app/templates/search-panel.html'
             }
@@ -140,7 +95,7 @@
     export interface ISearchPanelScope extends ng.IScope {
         test: string;
         statusIcon: string;
-        expanded: boolean;
+        //expanded: string;
         terms: Array<ISearchTerm>;
         changed: Function;
         searchText: string;

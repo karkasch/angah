@@ -11,33 +11,20 @@ var Angah;
                     changed: "="
                 },
                 link: function (scope, element, attrs) {
-                    //console.log('searchSvc');
                     var $scope = scope;
                     var elem = element;
                     $scope.statusIcon = "P";
                     $scope.searchText = "Type to search...";
-                    $scope.test = "test from D scrope";
-                    $scope.expanded = false;
-                    $scope.searchResults = null; //{};
+                    //$scope.expanded = false;
+                    $scope.searchResults = null;
                     $(elem).find('.txt-box').focus(function (e) {
-                        //$(e.currentTarget).addClass('a-active');
                         $scope.searchText = "";
-                        //$(elem).find('.txt-box').val('');
                         $scope.$apply();
                     });
                     $(elem).find('.search-result-panel').click(function (e) {
                         $(e.currentTarget).addClass('a-active');
                     });
-                    //$(elem).find('.txt-box').keyup((e) => {
                     $(elem).find('.txt-box').keyup(function (e) {
-                        console.log('search AAA', e, $scope);
-                        if (e.keyCode == 8) {
-                        }
-                        else if (e.keyCode == 13) {
-                            console.log('search event', e, $scope);
-                        }
-                        else {
-                        }
                         if ($scope.searchText.length >= 2) {
                             $scope.statusIcon = "S";
                             $.ajax({
@@ -46,12 +33,8 @@ var Angah;
                                 contentType: "application/json",
                                 cache: false
                             }).done(function (response) {
-                                console.log('resss', response);
                                 $scope.statusIcon = "P";
                                 $scope.searchResults = response;
-                                //$scope.terms.push({ id: 0, text: $scope.searchText });
-                                //$scope.searchText = "";
-                                //$(elem).find('.txt-box').val('');
                                 $(elem).find('.search-result-panel').addClass('expanded');
                                 $scope.$apply();
                             });
@@ -86,24 +69,13 @@ var Angah;
                             $scope.changed(e);
                         }
                         $scope.searchText = "";
-                        //$(elem).find('.txt-box').focus();
                     };
-                    console.log('D scrope', $scope);
+                    // hide search results when click away
                     $(document).click(function (e) {
-                        //console.log('doc clicked', $scope, e);
                         if ($(e.target).closest('.search-result-panel,.search-box').length == 0) {
                             $(elem).find('.search-result-panel').removeClass('expanded');
                         }
-                        //$scope.expanded = false;
-                        //if ($(elem).find('.txt-box').hasClass('a-active') || 
-                        //    $(elem).find('.search-result-panel').hasClass('a-active')) {
-                        //} else {
-                        //    $(elem).find('.search-result-panel').fadeOut(400);
-                        //}
                     });
-                    //$(elem).on('click', (e) => {
-                    //    alert(e);
-                    //});
                 },
                 templateUrl: '/Scripts/app/templates/search-panel.html'
             };
