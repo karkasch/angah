@@ -12,6 +12,7 @@
                     var $scope = scope;
                     var elem = element;
 
+                    $scope.statusIcon = "P";
                     $scope.searchText = "Type to search...";
                     $scope.test = "test from D scrope";
                     $scope.expanded = false;
@@ -49,6 +50,7 @@
                         }
 
                         if ($scope.searchText.length >= 2) {
+                            $scope.statusIcon = "S";
                             $.ajax({
                                 url: "/api/v1/search",
                                 dataType: "json",
@@ -56,6 +58,7 @@
                                 cache: false
                             }).done((response: ISearchResults) => {
                                 console.log('resss', response);
+                                $scope.statusIcon = "P";
 
                                 $scope.searchResults = response;
 
@@ -136,6 +139,7 @@
 
     export interface ISearchPanelScope extends ng.IScope {
         test: string;
+        statusIcon: string;
         expanded: boolean;
         terms: Array<ISearchTerm>;
         changed: Function;

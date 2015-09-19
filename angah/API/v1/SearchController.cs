@@ -11,6 +11,8 @@ namespace angah.API.v1
     {
         public object Get()
         {
+            System.Threading.Thread.Sleep(1222);
+
             var res = new
             {
                 assets = new List<object>()

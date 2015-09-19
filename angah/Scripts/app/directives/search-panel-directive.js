@@ -14,6 +14,7 @@ var Angah;
                     //console.log('searchSvc');
                     var $scope = scope;
                     var elem = element;
+                    $scope.statusIcon = "P";
                     $scope.searchText = "Type to search...";
                     $scope.test = "test from D scrope";
                     $scope.expanded = false;
@@ -38,6 +39,7 @@ var Angah;
                         else {
                         }
                         if ($scope.searchText.length >= 2) {
+                            $scope.statusIcon = "S";
                             $.ajax({
                                 url: "/api/v1/search",
                                 dataType: "json",
@@ -45,6 +47,7 @@ var Angah;
                                 cache: false
                             }).done(function (response) {
                                 console.log('resss', response);
+                                $scope.statusIcon = "P";
                                 $scope.searchResults = response;
                                 //$scope.terms.push({ id: 0, text: $scope.searchText });
                                 //$scope.searchText = "";
