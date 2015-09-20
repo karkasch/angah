@@ -28,7 +28,11 @@ var Angah;
                     $(elem).find('.search-results').keyup(function (e) {
                         console.log('ddd', e, _this);
                         if (e.keyCode == 38 && $(e.target).hasClass('res-item')) {
-                            $(e.target).prev('tr').focus();
+                            var prev = $(e.target).prev('tr');
+                            if (prev.length > 0)
+                                prev.focus();
+                            else
+                                $(elem).find('.txt-box').focus();
                         }
                         else if (e.keyCode == 40 && $(e.target).hasClass('res-item')) {
                             $(e.target).next('tr').focus();
@@ -56,6 +60,7 @@ var Angah;
                         }
                     };
                     $scope.checkKeys = function (e) {
+                        console.log('checkKeys', e);
                         if ($scope.searchText == "" && e.keyCode == 8) {
                             $scope.terms.splice($scope.terms.length - 1, 1);
                         }
@@ -63,6 +68,9 @@ var Angah;
                             var res = $(elem).find('.search-results .res-item');
                             if (res.length > 0)
                                 $(res[0]).focus();
+                        }
+                        else if (e.keyCode == 27) {
+                            $(elem).find('.search-result-panel').removeClass('expanded');
                         }
                     };
                     $scope.removeItem = function (e, term) {
