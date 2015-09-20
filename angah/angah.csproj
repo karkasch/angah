@@ -247,6 +247,7 @@
     <Content Include="Content\app.css.map">
       <DependentUpon>app.css</DependentUpon>
     </Content>
+    <Content Include="Content\vars.less" />
     <None Include="Scripts\libs\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\controllers\home-controller.js" />
