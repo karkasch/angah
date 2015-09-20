@@ -26,7 +26,22 @@
                         $(e.currentTarget).addClass('a-active');
                     });
 
-                    $(elem).find('.txt-box').keyup((e) => {
+                    $(elem).find('.search-results').keyup((e) => {
+                        console.log('ddd', e, this);
+                        if (e.keyCode == 38 && $(e.target).hasClass('res-item')) {
+                            $(e.target).prev('tr').focus();
+                        }
+                        else if (e.keyCode == 40 && $(e.target).hasClass('res-item')) {
+                            $(e.target).next('tr').focus();
+                        }
+                        else if (e.keyCode == 13) {
+                            $(e.target).find('.asset').click();
+                        }
+                    });
+
+                    //$(elem).find('.txt-box').keyup((e) => {
+                    $scope.startSearch = (e: JQueryEventObject) => {
+                        console.log('start search', e);
 
                         if ($scope.searchText.length >= 2) {
                             $scope.statusIcon = "S";
@@ -42,11 +57,19 @@
                                 $scope.$apply();
                             });
                         }
-                        else if ($scope.searchText == "" && e.keyCode == 8) {
+                     };
+
+                    $scope.checkKeys = (e) => {
+                        if ($scope.searchText == "" && e.keyCode == 8) {
                             $scope.terms.splice($scope.terms.length - 1, 1);
-                            $scope.$apply();
+                            //$scope.$apply();
                         }
-                    });
+                        else if (e.keyCode == 40) {
+                            var res = $(elem).find('.search-results .res-item');
+                            if (res.length > 0)
+                                $(res[0]).focus();
+                        }
+                    }
 
                     $scope.removeItem = (e: JQueryEventObject, term: any) => {
                         console.log('removed ss', e, term, $scope);
@@ -101,6 +124,7 @@
         searchText: string;
         searchTextFocus: Function;
         startSearch: Function;
+        checkKeys: Function;
         removeItem: Function;
         searchResults: ISearchResults;
         selectTerm: Function;

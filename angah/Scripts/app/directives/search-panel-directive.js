@@ -4,6 +4,7 @@ var Angah;
         function Dirs() {
         }
         Dirs.SearchPanelDirective = function ($compile, searchSvc) {
+            var _this = this;
             return {
                 restrict: 'E',
                 scope: {
@@ -24,7 +25,21 @@ var Angah;
                     $(elem).find('.search-result-panel').click(function (e) {
                         $(e.currentTarget).addClass('a-active');
                     });
-                    $(elem).find('.txt-box').keyup(function (e) {
+                    $(elem).find('.search-results').keyup(function (e) {
+                        console.log('ddd', e, _this);
+                        if (e.keyCode == 38 && $(e.target).hasClass('res-item')) {
+                            $(e.target).prev('tr').focus();
+                        }
+                        else if (e.keyCode == 40 && $(e.target).hasClass('res-item')) {
+                            $(e.target).next('tr').focus();
+                        }
+                        else if (e.keyCode == 13) {
+                            $(e.target).find('.asset').click();
+                        }
+                    });
+                    //$(elem).find('.txt-box').keyup((e) => {
+                    $scope.startSearch = function (e) {
+                        console.log('start search', e);
                         if ($scope.searchText.length >= 2) {
                             $scope.statusIcon = "S";
                             $.ajax({
@@ -39,11 +54,17 @@ var Angah;
                                 $scope.$apply();
                             });
                         }
-                        else if ($scope.searchText == "" && e.keyCode == 8) {
+                    };
+                    $scope.checkKeys = function (e) {
+                        if ($scope.searchText == "" && e.keyCode == 8) {
                             $scope.terms.splice($scope.terms.length - 1, 1);
-                            $scope.$apply();
                         }
-                    });
+                        else if (e.keyCode == 40) {
+                            var res = $(elem).find('.search-results .res-item');
+                            if (res.length > 0)
+                                $(res[0]).focus();
+                        }
+                    };
                     $scope.removeItem = function (e, term) {
                         console.log('removed ss', e, term, $scope);
                         for (var i = 0; i < $scope.terms.length; i++) {

@@ -25,7 +25,7 @@
   cursor: pointer;
   display: inline-block;
   min-width: 30px;
-  padding: 2px 4px 2px 4px;
+  padding: 2px 5px 2px 5px;
   border-radius: 2px;
   margin-right: 4px;
 }
@@ -35,7 +35,7 @@
   margin-left: 5px;
 }
 .search-panel .search-box .res.asset {
-  background-color: #629ac3;
+  background-color: #5face2;
   color: white;
 }
 .search-panel .search-box .res.text {
@@ -48,6 +48,10 @@
   height: 20px;
   border: none;
   outline: none;
+  color: #969696;
+}
+.search-panel .search-box .txt-box:focus {
+  color: #333333;
 }
 .search-panel .search-icon {
   border: solid 1px #3884bb;
@@ -79,12 +83,34 @@
   width: 49%;
   float: left;
 }
+.search-panel .search-result-panel .search-results .assets-res table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.search-panel .search-result-panel .search-results .assets-res table tr {
+  border-bottom: solid 1px #e5e5e5;
+  box-sizing: padding-box;
+}
+.search-panel .search-result-panel .search-results .assets-res table tr td {
+  padding: 5px;
+}
+.search-panel .search-result-panel .search-results .assets-res table thead tr {
+  background-color: #ededed;
+}
+.search-panel .search-result-panel .search-results .assets-res table tbody tr:hover {
+  background-color: lightyellow;
+}
+.search-panel .search-result-panel .search-results .assets-res table tbody tr:focus {
+  border: solid 1px #5face2;
+  outline: none;
+}
 .search-panel .search-result-panel .search-results .assets-res .asset {
   cursor: pointer;
   display: inline-block;
-  padding: 2px 5px 2px 5px;
-  background-color: #54a1d8;
+  padding: 4px 8px 4px 8px;
+  background-color: #5face2;
   color: white;
+  border-radius: 2px;
 }
 .search-panel .search-result-panel .search-results .docs-res {
   width: 49%;
