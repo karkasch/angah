@@ -74,8 +74,8 @@
   padding: 10px;
 }
 .search-panel .search-result-panel .search-results .assets-res {
-  width: 49%;
-  float: left;
+  /*width: 49%;
+                float: left;*/
 }
 .search-panel .search-result-panel .search-results .assets-res table {
   width: 100%;
@@ -83,6 +83,8 @@
 }
 .search-panel .search-result-panel .search-results .assets-res table tr {
   border-bottom: solid 1px #e5e5e5;
+  -moz-box-sizing: padding-box;
+  -webkit-box-sizing: padding-box;
   box-sizing: padding-box;
 }
 .search-panel .search-result-panel .search-results .assets-res table tr td {
@@ -95,7 +97,9 @@
   background-color: lightyellow;
 }
 .search-panel .search-result-panel .search-results .assets-res table tbody tr:focus {
-  border: solid 1px #5face2;
+  background-color: #f3f3ca;
+  box-shadow: #e4dfaf 4px 4px inset;
+  border: solid: 1px red;
   outline: none;
 }
 .search-panel .search-result-panel .search-results .assets-res .asset {
@@ -115,7 +119,8 @@
   border: solid 1px #cfcfcf;
   border-top: none;
   box-shadow: 1px 2px 4px rgba(147, 147, 147, 0.49);
-  min-height: 400px;
+  height: auto;
+  max-height: 550px;
   overflow: auto;
   -moz-transition: opacity ease-in-out 400ms;
   -o-transition: opacity ease-in-out 400ms;

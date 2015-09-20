@@ -1,12 +1,12 @@
 ﻿<div class="search-panel">
     <div class="search-box">
         <span class="res {{t.termType}} {{t.animate}}" ng-repeat="t in terms" ng-click="removeItem($event, t)">{{t.text}}<span class="cross">x</span></span>
-        <input type="text" class="txt-box" ng-model="searchText" ng-change="startSearch($event)" ng-keyup="checkKeys($event)" tabindex="2" />
+        <input type="text" class="txt-box" ng-model="searchText" ng-change="startSearchDelayed($event)" ng-keyup="checkKeys($event)" ng-keydown="checkKeysDown($event)" tabindex="2" placeholder="Type to search..." />
         <span class="search-icon">{{statusIcon}}</span>
     </div>
     <div class="search-result-panel">
         <div class="search-results">
-            <div class="assets-res">
+            <div class="assets-res" ng-show="searchResults.assets != null && searchResults.assets.length > 0">
                 <table>
                     <thead>
                         <tr>
@@ -24,9 +24,9 @@
                     </tbody>
                 </table>
             </div>
-            <div class="docs-res">
+            <!--<div class="docs-res">
                 docs res
-            </div>
+            </div>-->
         </div>
     </div>
 </div>

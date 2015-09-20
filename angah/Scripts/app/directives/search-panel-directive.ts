@@ -10,9 +10,10 @@
                 link: (scope: ISearchPanelScope, element: ng.IAugmentedJQuery, attrs: ng.IAttributes) => {
                     var $scope = scope;
                     var elem = element;
+                    var searchTimeout = null;
 
                     $scope.statusIcon = "P";
-                    $scope.searchText = "Type to search...";
+                    $scope.searchText = "";
                     //$scope.expanded = false;
                     $scope.searchResults = null;
 
@@ -20,6 +21,10 @@
                     $(elem).find('.txt-box').focus((e) => {
                         $scope.searchText = "";
                         $scope.$apply();
+                    });
+
+                    $(elem).find('.txt-box').dblclick((e: JQueryEventObject) => {
+                        $(elem).find('.search-result-panel').addClass('expanded');
                     });
 
                     $(elem).find('.search-result-panel').click((e) => {
@@ -41,41 +46,78 @@
                         else if (e.keyCode == 13) {
                             $(e.target).find('.asset').click();
                         }
+                        else if (e.keyCode == 27) { // esc
+                            $(elem).find('.search-result-panel').removeClass('expanded');
+                            $(elem).find('.txt-box').focus();
+                        }
                     });
 
-                    //$(elem).find('.txt-box').keyup((e) => {
-                    $scope.startSearch = (e: JQueryEventObject) => {
-                        console.log('start search', e);
+                    $scope.startSearchDelayed = (e: JQueryEventObject) => {
+                        $(elem).find('.search-result-panel').removeClass('expanded');
 
-                        if ($scope.searchText.length >= 2) {
-                            $scope.statusIcon = "S";
-                            $.ajax({
-                                url: "/api/v1/search",
-                                dataType: "json",
-                                contentType: "application/json",
-                                cache: false
-                            }).done((response: ISearchResults) => {
-                                $scope.statusIcon = "P";
-                                $scope.searchResults = response;
-                                $(elem).find('.search-result-panel').addClass('expanded');
+                        if (searchTimeout != null)
+                            window.clearTimeout(searchTimeout);
+
+                        searchTimeout = window.setTimeout(() => {
+                            if ($scope.searchText.length >= 2) {
+                                $scope.statusIcon = "S";
                                 $scope.$apply();
-                            });
-                        }
-                     };
+                                $.ajax({
+                                    url: "/api/v1/search?q=" + $scope.searchText,
+                                    dataType: "json",
+                                    contentType: "application/json",
+                                    cache: false
+                                }).done((response: ISearchResults) => {
+                                    $scope.statusIcon = "P";
+                                    $scope.searchResults = response;
+                                    $(elem).find('.search-result-panel').addClass('expanded');
+                                    $scope.$apply();
+                                });
+                            }
+                        }, 500);
+                    }
+
+                    //$scope.startSearch = (e: JQueryEventObject) => {
+                    //    console.log('start search', e);
+
+                    //    if ($scope.searchText.length >= 2) {
+                    //        $scope.statusIcon = "S";
+                    //        $.ajax({
+                    //            url: "/api/v1/search",
+                    //            dataType: "json",
+                    //            contentType: "application/json",
+                    //            cache: false
+                    //        }).done((response: ISearchResults) => {
+                    //            $scope.statusIcon = "P";
+                    //            $scope.searchResults = response;
+                    //            $(elem).find('.search-result-panel').addClass('expanded');
+                    //            $scope.$apply();
+                    //        });
+                    //    }
+                    // };
 
                     $scope.checkKeys = (e) => {
                         console.log('checkKeys', e);
-                        if ($scope.searchText == "" && e.keyCode == 8) {
-                            $scope.terms.splice($scope.terms.length - 1, 1);
-                            //$scope.$apply();
-                        }
-                        else if (e.keyCode == 40) {
+                        //if ($scope.searchText == "" && e.keyCode == 8) {
+                        //    $scope.terms.splice($scope.terms.length - 1, 1);
+                        //    //$scope.$apply();
+                        //}
+                        if (e.keyCode == 40) {
+                            if (!$(elem).find('.search-result-panel').hasClass('expanded'))
+                                $(elem).find('.search-result-panel').addClass('expanded');
+
                             var res = $(elem).find('.search-results .res-item');
                             if (res.length > 0)
                                 $(res[0]).focus();
                         }
                         else if (e.keyCode == 27) {
                             $(elem).find('.search-result-panel').removeClass('expanded');
+                        }
+                    }
+
+                    $scope.checkKeysDown = (e: JQueryEventObject) => {
+                        if (e.keyCode == 8 && $scope.searchText == "") {
+                            $scope.terms.splice($scope.terms.length - 1, 1);
                         }
                     }
 
@@ -132,7 +174,9 @@
         searchText: string;
         searchTextFocus: Function;
         startSearch: Function;
+        startSearchDelayed: Function;
         checkKeys: Function;
+        checkKeysDown: Function;
         removeItem: Function;
         searchResults: ISearchResults;
         selectTerm: Function;
